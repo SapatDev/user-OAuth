@@ -22,6 +22,10 @@ def generate_secret_hash(client_id, client_secret, username):
 def get_cognito_client():
     return boto3.client('cognito-idp', region_name=REGION_NAME)
 
+@app.route('/', methods=['GET'])
+def home():
+
+    return "<h1>Hello</>"
 
 @app.route('/signup', methods=['POST'])
 def signup():
@@ -82,4 +86,4 @@ def signin():
         return jsonify({'error': str(e)}), 500
     
 if __name__ == '__main__':
-    app.run(host="0.0.0.0", port=80, debug=False)
+    app.run(debug=True)
